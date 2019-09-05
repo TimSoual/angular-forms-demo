@@ -1,3 +1,9 @@
+## Angular Forms Demo Application
+
+This repository is a demo application to show angular form usage. It uses electron.
+
+
+
 ## Demo
 
 To see the application on windows, extract the `angular-forms-demo-win32-ia32.zip` file at the repository root.
