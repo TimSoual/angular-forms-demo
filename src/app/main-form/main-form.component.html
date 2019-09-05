@@ -1,18 +1,40 @@
 <form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
-  <div *ngFor="let defectType of defectTypes">
-    <label>
-      <input
-        type="radio"
-        formControlName="defectType"
-        [value]="defectType">{{ defectType }}
-    </label>
+
+  <div class="form-text">Type de défaut :</div>
+  <div *ngFor="let defectType of defectTypes; index as i" class="form-check">
+    <input
+      type="radio"
+      id="{{'defect' + i}}"
+      formControlName="defectType"
+      [value]="defectType"
+      class="form-check-input">
+    <label for="{{'defect' + i}}" class="form-check-label">{{ defectType }}</label>
+  </div>
+  <div class="invalid-feedback" *ngIf="!mainForm.get('operatorName').valid && mainForm.get('operatorName').touched && mainForm.get('operatorName').errors['required']">
+     Veuillez renseigner le nom de l'opérateur.
   </div>
 
-  <label for="operatorName">Nom de l'opérateur</label>
-  <input id="operatorName" type="text" formControlName="operatorName">
+  <div class="form-group">
+    <label for="operatorName" >Nom de l'opérateur</label>
+    <input
+    id="operatorName"
+    class="form-control"
+    [ngClass]="{'is-invalid': !mainForm.get('operatorName').valid && mainForm.get('operatorName').touched}"
+    type="text"
+    formControlName="operatorName">
+    <div class="invalid-feedback" *ngIf="!mainForm.get('operatorName').valid && mainForm.get('operatorName').touched && mainForm.get('operatorName').errors['required']">
+     Veuillez renseigner le nom de l'opérateur.
+    </div>
+    <div class="invalid-feedback" *ngIf="!mainForm.get('operatorName').valid && mainForm.get('operatorName').touched && mainForm.get('operatorName').errors['nameHasNumber']">
+     Le nom de l'opérateur ne doit pas contenir de chiffres.
+    </div>
+  </div>
 
-  <label for="comments">Commentaires</label>
-  <textarea id="comments" formControlName="comments"></textarea>
+  <div class="form-group">
+    <label for="comments">Commentaires</label>
+    <textarea id="comments" formControlName="comments" rows="3" class="form-control"></textarea>
+  </div>
 
-  <button type="submit">Submit</button>
+  <button class="btn btn-primary" type="submit" [disabled]="!mainForm.valid">Valider</button>
+
 </form>
