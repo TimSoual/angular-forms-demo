@@ -1,0 +1,16 @@
+$dark-grey: #444;
+$light-grey: #bbb;
+
+header {
+    background-color: $dark-grey;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+footer {
+    margin-top: 50px;
+    background-color: $dark-grey;
+    text-align: center;
+    color: $light-grey;
+}
+

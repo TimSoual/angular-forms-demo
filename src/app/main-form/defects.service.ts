@@ -16,7 +16,7 @@ export class DefectsService {
 
 
     return this.http.post <{message: string}>(
-      'http://jsonstub.com/defects22',
+      'http://jsonstub.com/defects',
       body,
       {headers});
   }
