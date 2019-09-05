@@ -8,6 +8,9 @@ Then you can simply launch the `angular-forms-demo.exe` file inside the extracte
 
 First, install node.js (https://nodejs.org)
 
+Then, install the angular CLI:
+`npm install @angular/cli -g`
+
 Create a project folder on your computer.
 Open the terminal in this folder.
 
@@ -37,7 +40,7 @@ To generate a new dev electron app:
 To build the electron application, first ensure that all dependencies are installed.
 `npm install`
 And that the angular app is built with production flags:
-`npm run build --prod=true`
+`ng build --prod=true`
 Then, run this line at the repository root:
 `electron-packager . angular-forms-demo --platform=win32 --arch=ia32`
 
