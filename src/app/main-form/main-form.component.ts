@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { DefectsService } from './defects.service';
+
 @Component({
   selector: 'app-main-form',
   templateUrl: './main-form.component.html',
@@ -9,8 +11,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class MainFormComponent implements OnInit {
   defectTypes = ['délaminage', 'porosité', 'inclusion'];
   mainForm: FormGroup;
+  isLoading = false;
+  isSubmitted = false;
+  serverError = null;
 
-  constructor() { }
+
+  constructor(private defectsService: DefectsService) { }
 
   ngOnInit() {
     // We initialize the from group with validators.
@@ -31,6 +37,21 @@ export class MainFormComponent implements OnInit {
 
   onSubmit() {
     console.log('form submitted: ', this.mainForm);
+
+    this.isLoading = true;
+
+      this.defectsService.postDefect(this.mainForm.value)
+        .subscribe(responseData => {
+           console.log('response: ', responseData);
+           this.mainForm.reset();
+           this.isLoading = false;
+           this.isSubmitted = true;
+           this.serverError = null;
+      }, error => {
+        this.isLoading = false;
+        this.isSubmitted = true;
+        this.serverError = {message: error.message};
+      });
   }
 
 }

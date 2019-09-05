@@ -35,6 +35,32 @@
     <textarea id="comments" formControlName="comments" rows="3" class="form-control"></textarea>
   </div>
 
-  <button class="btn btn-primary" type="submit" [disabled]="!mainForm.valid">Valider</button>
+
+
+  <div class="progress-circular" *ngIf="isLoading">
+    <div class="progress-circular-wrapper">
+      <div class="progress-circular-inner">
+        <div class="progress-circular-left">
+          <div class="progress-circular-spinner"></div>
+        </div>
+        <div class="progress-circular-gap"></div>
+        <div class="progress-circular-right">
+          <div class="progress-circular-spinner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isLoading && isSubmitted">
+    <div class="alert alert-danger" role="alert" *ngIf="serverError && serverError.message">
+      {{serverError.message}}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="serverError && !serverError.message">
+      Le défaut n'a pas pu être enregistré.
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="!serverError">
+      Le défaut a bien été enregistré. Vous pouvez en enregistrer un autre.
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!mainForm.valid || isLoading">Valider</button>
 
 </form>
