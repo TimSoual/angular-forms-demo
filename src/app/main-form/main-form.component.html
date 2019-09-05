@@ -1,1 +1,18 @@
-<p>main-form works!</p>
+<form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
+  <div *ngFor="let defectType of defectTypes">
+    <label>
+      <input
+        type="radio"
+        formControlName="defectType"
+        [value]="defectType">{{ defectType }}
+    </label>
+  </div>
+
+  <label for="operatorName">Nom de l'opérateur</label>
+  <input id="operatorName" type="text" formControlName="operatorName">
+
+  <label for="comments">Commentaires</label>
+  <textarea id="comments" formControlName="comments"></textarea>
+
+  <button type="submit">Submit</button>
+</form>
