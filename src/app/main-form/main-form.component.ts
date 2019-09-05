@@ -36,22 +36,21 @@ export class MainFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('form submitted: ', this.mainForm);
-
+    // isLoading is used for the spinner effect.
     this.isLoading = true;
 
-      this.defectsService.postDefect(this.mainForm.value)
-        .subscribe(responseData => {
-           console.log('response: ', responseData);
-           this.mainForm.reset();
-           this.isLoading = false;
-           this.isSubmitted = true;
-           this.serverError = null;
-      }, error => {
-        this.isLoading = false;
-        this.isSubmitted = true;
-        this.serverError = {message: error.message};
-      });
+    // We make the post request in defectsService
+    this.defectsService.postDefect(this.mainForm.value)
+      .subscribe(responseData => {
+         this.mainForm.reset();
+         this.isLoading = false;
+         this.isSubmitted = true;
+         this.serverError = null;
+    }, error => {
+      this.isLoading = false;
+      this.isSubmitted = true;
+      this.serverError = {message: error.message};
+    });
   }
 
 }
