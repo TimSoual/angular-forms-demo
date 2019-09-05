@@ -1,27 +1,49 @@
-# AngularFormsDemo
+## Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
+To see the application on windows, extract the `angular-forms-demo-win32-ia32.zip` file at the repository root.
+Then you can simply launch the `angular-forms-demo.exe` file inside the extracted folder.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Install Steps
 
-## Code scaffolding
+First, install node.js (https://nodejs.org)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Create a project folder on your computer.
+Open the terminal in this folder.
+
+Clone the repository from github:
+`git clone https://github.com/TimSoual/angular-forms-demo.git`
+
+Install the project dependencies:
+`npm install`
+
+
+Your project is now set up.
+
+
+## Developpement
+
+To begin working on it, use the following commands:
+
+To work on the browser, use:
+`npm start`
+
+To generate a new dev electron app:
+`npm run start:electron`
+
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+To build the electron application, first ensure that all dependencies are installed.
+`npm install`
+And that the angular app is built with production flags:
+`npm run build --prod=true`
+Then, run this line at the repository root:
+`electron-packager . angular-forms-demo --platform=win32 --arch=ia32`
 
-## Running unit tests
+It will create a folder named angular-forms-demo, which is the packaged app.
+Note: I did this on windows. On other operating systems there may be additional steps. If so, please complete this readme.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Testing
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+There are no implemented tests yet. This is on the TODO list.
