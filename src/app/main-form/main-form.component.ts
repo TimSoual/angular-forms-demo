@@ -39,8 +39,14 @@ export class MainFormComponent implements OnInit {
     // isLoading is used for the spinner effect.
     this.isLoading = true;
 
+    // Add the date to the form data.
+    const defectData = {
+      ...this.mainForm.value,
+      'date': new Date
+    }
+
     // We make the post request in defectsService
-    this.defectsService.postDefect(this.mainForm.value)
+    this.defectsService.postDefect(defectData)
       .subscribe(responseData => {
          this.mainForm.reset();
          this.isLoading = false;
